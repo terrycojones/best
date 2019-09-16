@@ -21,8 +21,12 @@ import scipy.stats as st
 
 from .model import BestResults, BestResultsOne, BestResultsTwo
 
-# Only 99.5% of the samples are displayed, to prevent the long tails
-DISPLAYED_ALPHA = 0.005
+# Only this ratio of the samples are displayed,
+#  to prevent the long tails distorting the plot.
+DISPLAYED_MASS = 0.995
+
+DEFAULT_HDI_MASS = 0.95
+
 PRETTY_BLUE = '#89d1ea'
 
 
@@ -85,7 +89,7 @@ def plot_posterior(best_results: BestResults,
         >>> plt.show()
     """
     samples = best_results.trace[var_name]
-    samples_min, samples_max = best_results.hpd(var_name, DISPLAYED_ALPHA)
+    samples_min, samples_max = best_results.hdi(var_name, DISPLAYED_MASS)
     samples = samples[(samples_min <= samples) * (samples <= samples_max)]
 
     trans = blended_transform_factory(ax.transData, ax.transAxes)
@@ -117,7 +121,7 @@ def plot_posterior(best_results: BestResults,
         ax.axvline(ref_val, linestyle=':')
 
     # plot HDI
-    hdi_min, hdi_max = best_results.hpd(var_name, alpha=0.05)
+    hdi_min, hdi_max = best_results.hdi(var_name, DEFAULT_HDI_MASS)
 
     hdi_line, = ax.plot([hdi_min, hdi_max], [0, 0],
                         lw=5.0, color='k')
@@ -161,7 +165,7 @@ def plot_normality_posterior(best_results, ax, bins, title):
     var_name = 'Normality'
     samples = best_results.trace[var_name]
     norm_bins = np.logspace(np.log10(best_results.model.nu_min),
-                            np.log10(best_results.hpd(var_name, DISPLAYED_ALPHA)[-1]),
+                            np.log10(best_results.hdi(var_name, DISPLAYED_MASS)[-1]),
                             num=bins + 1)
     plot_posterior(best_results,
                    var_name,
@@ -362,8 +366,8 @@ def plot_all_two(best_results: BestResultsTwo,
     posterior_std1 = trace['Group 1 SD']
     posterior_std2 = trace['Group 2 SD']
 
-    std1_min, std1_max = best_results.hpd('Group 1 SD', DISPLAYED_ALPHA)
-    std2_min, std2_max = best_results.hpd('Group 2 SD', DISPLAYED_ALPHA)
+    std1_min, std1_max = best_results.hdi('Group 1 SD', DISPLAYED_MASS)
+    std2_min, std2_max = best_results.hdi('Group 2 SD', DISPLAYED_MASS)
     std_min = min(std1_min, std2_min)
     std_max = max(std1_max, std2_max)
     stds = np.concatenate((posterior_std1, posterior_std2))

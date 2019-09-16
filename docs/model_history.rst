@@ -24,6 +24,7 @@ Where :math:`\hat\mu` and :math:`\hat\sigma` are the sample mean and
 sample standard deviation of all the data from the two groups.
 The effect size is calculated as :math:`(\mu_1 - \mu_2) \big/ \sqrt{(\sigma_1^2 + \sigma_2^2) \,/\, 2}`.
 
+.. _sec-model-v2:
 .. _sec-model-latest:
 
 v2

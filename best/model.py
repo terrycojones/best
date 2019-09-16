@@ -21,6 +21,11 @@ from pymc3.backends.base import MultiTrace
 import scipy.stats as st
 
 
+def check_credible_mass(credible_mass):
+    if not 0 < credible_mass < 1:
+        raise ValueError('credible_mass parameter must be between 0 and 1, non-inclusive')
+
+
 class BestModel(ABC):
     """Base class for BEST models"""
 
@@ -43,10 +48,10 @@ class BestModel(ABC):
         pass
 
     @abstractmethod
-    def observed_data(self, group_id):
+    def observed_data(self, group_id: int):
         """Return the observed data as a NumPy array
 
-        (This property is accessible primarily for internal purposes.)
+        (This method is accessible primarily for internal purposes.)
         """
         pass
 
@@ -123,7 +128,7 @@ class BestModelOne(BestModel):
     def model(self):
         return self._model
 
-    def observed_data(self, group_id):
+    def observed_data(self, group_id: int):
         if group_id == 1:
             return self.y
         else:
@@ -200,7 +205,7 @@ class BestModelTwo(BestModel):
     def model(self):
         return self._model
 
-    def observed_data(self, group_id):
+    def observed_data(self, group_id: int):
         if group_id == 1:
             return self.y1
         elif group_id == 2:
@@ -241,43 +246,50 @@ class BestResults(ABC):
         """
         return self._trace
 
-    def observed_data(self, group_id):
+    def observed_data(self, group_id: int):
+        """Return the observed data as a NumPy array
+
+        (This method is accessible primarily for internal purposes.)
+        """
         return self.model.observed_data(group_id)
 
-    def summary(self, alpha=0.05):
+    def summary(self, credible_mass: float = 0.95):
         """Return summary statistics of the results
 
         Parameters
         ----------
-        alpha : float
+        credible_mass : float
             The highest posterior density intervals in the summary will cover
-            (1–alpha) * 100% of the probability mass.
-            For example, alpha=0.05 results in a 95% credible interval.
-            Default: 0.05.
+            credible_mass * 100% of the probability mass.
+            For example, credible_mass=0.95 results in 95% credible intervals.
+            Default: 0.95.
         """
-        return pm.summary(self.trace, alpha=alpha)
+        check_credible_mass(credible_mass)
+        return pm.summary(self.trace, alpha=(1 - credible_mass))
 
-    def hpd(self, var_name: str, alpha: float = 0.05):
-        """Calculate the highest posterior density (HPD) interval
+    def hdi(self, var_name: str, credible_mass: float = 0.95):
+        """Calculate the highest posterior density interval (HDI)
 
-        This is a 1-alpha *credible interval* which contains the
-        most likely values of the parameter.
+        This function calculates a *credible interval* which contains the
+        ``credible_mass`` most likely values of the parameter, given the data.
+        Also known as an HPD interval.
 
         Parameters
         ----------
         var_name : str
             Name of variable.
-        alpha : float
-            The HPD will cover (1–alpha) * 100% of the probability mass.
-            For example, alpha=0.05 results in a 95% credible interval.
-            Default: 0.05.
+        credible_mass : float
+            The HDI will cover credible_mass * 100% of the probability mass.
+            Default: 0.95, i.e. a 95% HDI.
 
         Returns
         -------
         (float, float)
             The endpoints of the HPD
         """
-        return tuple(pm.hpd(self.trace[var_name], alpha=alpha))
+        check_credible_mass(credible_mass)
+
+        return tuple(pm.hpd(self.trace[var_name], alpha=(1 - credible_mass)))
 
     def posterior_prob(self, var_name: str, low: float = -np.inf, high: float = np.inf):
         r"""Calculate the posterior probability that a variable is in a given interval

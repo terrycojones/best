@@ -24,7 +24,12 @@ For example, to find the probability that the first group's mean is larger by at
    >>> best_out.posterior_prob('Difference of means', low=0.5)
    0.87425
 
-The parameter estimation is described briefly in :ref:`the relevant section <brief-description>`,
+The 95% highest posterior density interval (HDI) can be queried just as easily::
+
+    >>> best_out.hdi('Difference of means', 0.95)
+    (0.12..., 1.84...)
+
+The parameter estimation is described briefly in :ref:`the relevant section <brief-description>` of this documentation,
 or in detail in the following publication:
 
    Kruschke, J. K. (2013). Bayesian estimation supersedes the *t* test.
@@ -53,14 +58,13 @@ Quote from chapter 1 of the book:
 
 The following open access papers give an intuitive introduction to Bayesian data analysis:
 
-    Kruschke, J. K. and Liddell, T. M. (2018).
+ - Kruschke, J. K. and Liddell, T. M. (2018).
     The Bayesian New Statistics: Hypothesis testing, estimation, meta-analysis, and power analysis from a Bayesian perspective.
     *Psychonomic Bulletin & Review* **25**, pp. 178-206.
     `R code <https://osf.io/j6364/files/>`_;
     see also the `Shiny App <http://www.indiana.edu/~kruschke/bayesAndFreqApp.html>`_.
     (doi: `10.3758/s13423-016-1221-4 <https://doi.org/10.3758/s13423-016-1221-4>`_)
-
-    Kruschke, J. K. and Liddell, T. M. (2018).
+ -  Kruschke, J. K. and Liddell, T. M. (2018).
     Bayesian data analysis for newcomers.
     *Psychonomic Bulletin & Review* **25**, pp. 155-177.
     (doi: `10.3758/s13423-017-1272-1 <https://doi.org/10.3758/s13423-017-1272-1>`_)
@@ -88,12 +92,15 @@ If you have trouble installing or using `best`, or understanding the results, or
 please `open an issue <https://github.com/treszkai/best/issues>`_  at the project's GitHub page,
 or open a `pull request <https://github.com/treszkai/best/pulls>`_ if you have a proposed solution.
 
+Your feedback and contribution are welcome!
+
 Further documentation
 ---------------------
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   api
-   explanations
-   model_history
+    api
+    explanations
+    model_history
+    version_history
