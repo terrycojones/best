@@ -7,10 +7,10 @@ with open("README.md", "r") as fh:
 setup(name='best',
       description='Bayesian estimation supersedes the t-test',
       author='Andrew Straw and Laszlo Treszkai',
-      author_email='strawman@astraw.com',
+      author_email='laszlo.treszkai@gmail.com',
       long_description=long_description,
       long_description_content_type="text/markdown",
-      url='https://github.com/strawlab/best',
+      url='https://github.com/treszkai/best',
       version='2.0.0',
       packages=['best'],
       classifiers=[
