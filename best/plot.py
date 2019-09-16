@@ -17,7 +17,6 @@ except ImportError:
 import numpy as np
 import matplotlib.lines as mpllines
 from matplotlib.transforms import blended_transform_factory
-from matplotlib.ticker import LogFormatter
 import scipy.stats as st
 
 from .model import BestResults, BestResultsOne, BestResultsTwo
@@ -173,7 +172,7 @@ def plot_normality_posterior(best_results, ax, bins, title):
     ax.set_xlim(2.4, norm_bins[-1] * 1.05)
     ax.semilogx()
     # don't use scientific notation for tick labels
-    tick_fmt = LogFormatter()
+    tick_fmt = plt.LogFormatter()
     ax.xaxis.set_major_formatter(tick_fmt)
     ax.xaxis.set_minor_formatter(tick_fmt)
 
