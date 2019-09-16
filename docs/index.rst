@@ -27,8 +27,8 @@ For example, to find the probability that the first group's mean is larger by at
 The parameter estimation is described briefly in :ref:`the relevant section <brief-description>`,
 or in detail in the following publication:
 
-   John K. Kruschke, 2013. Bayesian estimation supersedes the *t* test.
-   Journal of Experimental Psychology: General, 2013, v.142(2), pp.573-603.
+   Kruschke, J. K. (2013). Bayesian estimation supersedes the *t* test.
+   *Journal of Experimental Psychology: General* **142(2)**, pp.573-603.
    (doi: `10.1037/a0029146 <https://dx.doi.org/10.1037/a0029146>`_)
 
 The publication's `accompanying website <http://www.indiana.edu/~kruschke/BEST/>`_
@@ -44,6 +44,26 @@ while keeping the tools simple.
 It is *not* intended as a comprehensive data analysis tool.
 For that purpose, please refer to books like John K. Kruschke's
 `Doing Bayesian Data Analysis <https://sites.google.com/site/doingbayesiandataanalysis/>`_.
+Quote from chapter 1 of the book:
+
+    This book explains how to actually do Bayesian data analysis, by real people (like
+    you), for realistic data (like yours). The book starts at the basics, with elementary
+    notions of probability and programming. You do not need to already know statistics
+    and programming.
+
+The following open access papers give an intuitive introduction to Bayesian data analysis:
+
+    Kruschke, J. K. and Liddell, T. M. (2018).
+    The Bayesian New Statistics: Hypothesis testing, estimation, meta-analysis, and power analysis from a Bayesian perspective.
+    *Psychonomic Bulletin & Review* **25**, pp. 178-206.
+    `R code <https://osf.io/j6364/files/>`_;
+    see also the `Shiny App <http://www.indiana.edu/~kruschke/bayesAndFreqApp.html>`_.
+    (doi: `10.3758/s13423-016-1221-4 <https://doi.org/10.3758/s13423-016-1221-4>`_)
+
+    Kruschke, J. K. and Liddell, T. M. (2018).
+    Bayesian data analysis for newcomers.
+    *Psychonomic Bulletin & Review* **25**, pp. 155-177.
+    (doi: `10.3758/s13423-017-1272-1 <https://doi.org/10.3758/s13423-017-1272-1>`_)
 
 Installation
 ------------

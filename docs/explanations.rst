@@ -15,7 +15,8 @@ with an :ref:`additional parameter <sec-normality>` that controls the prevalence
 After assigning a prior distribution to the parameters,
 these distributions are updated in accordance with how well each parameter setting fits the data,
 resulting in the so-called *posterior distribution*.
-(The specifics of the prior are explained on the :ref:`Model history <sec-model-latest>` page.)
+(The model used by this library is not exactly like the one described in (Kruschke, 2013);
+the :ref:`Model history <sec-model-latest>` page gives an exact description.)
 
 The resulting t-distributions can be plotted with the :func:`plot_data_and_prediction` function,
 whose output is a figure like this:
