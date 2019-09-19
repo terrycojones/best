@@ -1,7 +1,7 @@
 from setuptools import setup
 
 
-with open("README.md", "r") as fh:
+with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setup(name='best',
@@ -9,14 +9,15 @@ setup(name='best',
       author='Andrew Straw and Laszlo Treszkai',
       author_email='laszlo.treszkai@gmail.com',
       long_description=long_description,
-      long_description_content_type="text/markdown",
+      long_description_content_type='text/markdown',
       url='https://github.com/treszkai/best',
-      version='2.0.0',
+      version='2.0.0-post0',
       packages=['best'],
       classifiers=[
-              "Programming Language :: Python :: 3",
-              "License :: OSI Approved :: MIT License",
-              "Operating System :: OS Independent",
+              'Programming Language :: Python :: 3',
+              'License :: OSI Approved :: MIT License',
+              'Operating System :: OS Independent',
       ],
       license='MIT',
-      )
+      python_requires='>=3.5',
+)

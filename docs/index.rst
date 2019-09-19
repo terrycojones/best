@@ -77,7 +77,7 @@ and can be installed with *pip*:
 
 .. code-block:: bash
 
-   pip install https://github.com/treszkai/best/archive/master.zip
+   pip install best
 
 This command installs the following dependencies:
 
@@ -88,7 +88,7 @@ This command installs the following dependencies:
 Get in touch
 ------------
 
-If you have trouble installing or using `best`, or understanding the results, or you found an error,
+If you find the documentation lacking or you have found an error,
 please `open an issue <https://github.com/treszkai/best/issues>`_  at the project's GitHub page,
 or open a `pull request <https://github.com/treszkai/best/pulls>`_ if you have a proposed solution.
 

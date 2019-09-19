@@ -42,7 +42,7 @@ The [documentation](https://best.readthedocs.io) describes the API in detail.
 
 ## Installation ##
 
-Ensure your Python version is sufficiently up-to-date:
+Ensure your Python version is sufficiently up-to-date (at least 3.5.4):
 
 ```bash
 $ python --version
@@ -51,7 +51,7 @@ Python 3.5.6
 
 Then install with Pip:
 ```bash
-$ pip install https://github.com/treszkai/best/archive/master.tar.gz
+$ pip install best
 ```
 
 ## Developer notes ##
