@@ -24,6 +24,7 @@ Where :math:`\hat\mu` and :math:`\hat\sigma` are the sample mean and
 sample standard deviation of all the data from the two groups.
 The effect size is calculated as :math:`(\mu_1 - \mu_2) \big/ \sqrt{(\sigma_1^2 + \sigma_2^2) \,/\, 2}`.
 
+.. _sec-model-v2:
 .. _sec-model-latest:
 
 v2
@@ -47,19 +48,19 @@ and the formula for effect size also uses :math:`\mathrm{sd}_i` instead of :math
     Setting a bound of 2.5 prevents strong outliers and extremely large standard deviations.
 
 Another change concerns the sampling of :math:`\sigma_i`.
-In the original model :math:`\sigma_i` was uniformly distributed between
-:math:`\hat\sigma\, / \,1000` and :math:`1000\,\hat\sigma`,
+In the original model :math:`\sigma_i \,/\, \hat\sigma` was uniformly distributed between
+:math:`1 \, / \,1000` and :math:`1000`,
 meaning the *prior* probability of :math:`\sigma > \hat\sigma` was 1000 times that of :math:`\sigma < \hat\sigma`,
 which caused an overestimation of :math:`\sigma` with low sample sizes (around :math:`N = 5`).
-To make these probabilities equal, now :math:`\log(\sigma_i)` is distributed uniformly between
-:math:`\log(\hat\sigma\, / \,1000)` and :math:`\log(1000\, \hat\sigma)`.
+To make these probabilities equal, now :math:`\log(\sigma_i \,/\, \hat\sigma)` is distributed uniformly between
+:math:`\log(1\, / \,1000)` and :math:`\log(1000)`.
 At :math:`N=25` this change in the prior does not cause a perceptible change in the posterior.
 
 *Summary of changes*:
  - Lower bound of :math:`\nu` is 2.5.
  - SD is calculated as :math:`\sigma \sqrt{ \nu / (\nu - 2)}`.
  - Effect size is calculated as :math:`(\mu_1 - \mu_2) \big/ \sqrt{(\mathrm{sd}_1^2 + \mathrm{sd}_2^2) \,/\, 2}`.
- - :math:`\log(\sigma_i)` is uniformly distributed.
+ - :math:`\log(\sigma_i \,/\, \hat\sigma)` is uniformly distributed.
 
 The model for two-group analysis is described by the following sampling statements:
 
@@ -67,8 +68,8 @@ The model for two-group analysis is described by the following sampling statemen
 
     \mu_1 &\sim \text{Normal}(\hat\mu, 1000 \, \hat\sigma) \\
     \mu_2 &\sim \text{Normal}(\hat\mu, 1000 \, \hat\sigma) \\
-    \log(\sigma_1) &\sim \text{Uniform}(\log(\hat\sigma \, / \, 1000), \log(1000\, \hat\sigma)) \\
-    \log(\sigma_2) &\sim \text{Uniform}(\log(\hat\sigma \, / \, 1000), \log(1000\, \hat\sigma)) \\
+    \log(\sigma_1 \,/\, \hat\sigma) &\sim \text{Uniform}(\log(1 \, / \, 1000), \log(1000)) \\
+    \log(\sigma_2 \,/\, \hat\sigma) &\sim \text{Uniform}(\log(1 \, / \, 1000), \log(1000)) \\
     \nu &\sim \text{Exponential}(1\, / \, 27.5) + 2.5 \\
     y_1 &\sim t_\nu(\mu_1, \sigma_1) \\
     y_2 &\sim t_\nu(\mu_2, \sigma_2)

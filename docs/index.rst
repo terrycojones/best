@@ -24,11 +24,16 @@ For example, to find the probability that the first group's mean is larger by at
    >>> best_out.posterior_prob('Difference of means', low=0.5)
    0.87425
 
-The parameter estimation is described briefly in :ref:`the relevant section <brief-description>`,
+The 95% highest posterior density interval (HDI) can be queried just as easily::
+
+    >>> best_out.hdi('Difference of means', 0.95)
+    (0.12..., 1.84...)
+
+The parameter estimation is described briefly in :ref:`the relevant section <brief-description>` of this documentation,
 or in detail in the following publication:
 
-   John K. Kruschke, 2013. Bayesian estimation supersedes the *t* test.
-   Journal of Experimental Psychology: General, 2013, v.142(2), pp.573-603.
+   Kruschke, J. K. (2013). Bayesian estimation supersedes the *t* test.
+   *Journal of Experimental Psychology: General* **142(2)**, pp.573-603.
    (doi: `10.1037/a0029146 <https://dx.doi.org/10.1037/a0029146>`_)
 
 The publication's `accompanying website <http://www.indiana.edu/~kruschke/BEST/>`_
@@ -44,6 +49,25 @@ while keeping the tools simple.
 It is *not* intended as a comprehensive data analysis tool.
 For that purpose, please refer to books like John K. Kruschke's
 `Doing Bayesian Data Analysis <https://sites.google.com/site/doingbayesiandataanalysis/>`_.
+Quote from chapter 1 of the book:
+
+    This book explains how to actually do Bayesian data analysis, by real people (like
+    you), for realistic data (like yours). The book starts at the basics, with elementary
+    notions of probability and programming. You do not need to already know statistics
+    and programming.
+
+The following open access papers give an intuitive introduction to Bayesian data analysis:
+
+ - Kruschke, J. K. and Liddell, T. M. (2018).
+    The Bayesian New Statistics: Hypothesis testing, estimation, meta-analysis, and power analysis from a Bayesian perspective.
+    *Psychonomic Bulletin & Review* **25**, pp. 178-206.
+    `R code <https://osf.io/j6364/files/>`_;
+    see also the `Shiny App <http://www.indiana.edu/~kruschke/bayesAndFreqApp.html>`_.
+    (doi: `10.3758/s13423-016-1221-4 <https://doi.org/10.3758/s13423-016-1221-4>`_)
+ -  Kruschke, J. K. and Liddell, T. M. (2018).
+    Bayesian data analysis for newcomers.
+    *Psychonomic Bulletin & Review* **25**, pp. 155-177.
+    (doi: `10.3758/s13423-017-1272-1 <https://doi.org/10.3758/s13423-017-1272-1>`_)
 
 Installation
 ------------
@@ -53,7 +77,7 @@ and can be installed with *pip*:
 
 .. code-block:: bash
 
-   pip install https://github.com/treszkai/best/archive/master.zip
+   pip install best
 
 This command installs the following dependencies:
 
@@ -64,16 +88,19 @@ This command installs the following dependencies:
 Get in touch
 ------------
 
-If you have trouble installing or using `best`, or understanding the results, or you found an error,
+If you find the documentation lacking or you have found an error,
 please `open an issue <https://github.com/treszkai/best/issues>`_  at the project's GitHub page,
 or open a `pull request <https://github.com/treszkai/best/pulls>`_ if you have a proposed solution.
+
+Your feedback and contribution are welcome!
 
 Further documentation
 ---------------------
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   api
-   explanations
-   model_history
+    api
+    explanations
+    model_history
+    version_history
