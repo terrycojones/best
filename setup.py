@@ -24,6 +24,6 @@ setup(name='best',
           'numpy',
           'scipy',
           'matplotlib>=3.0.0',
-          'pymc3',
+          'pymc3<4.0',
       ],
-)
+      )
