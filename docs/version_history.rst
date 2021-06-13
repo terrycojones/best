@@ -19,3 +19,8 @@ Changes from version 1.0:
  - :ref:`Model version 2 <sec-model-v2>`.
  - Introduction of object-oriented API.
  - Changes in plot appearance.
+
+2.0.1
+-----
+
+ - Fix: Automatically install requirements

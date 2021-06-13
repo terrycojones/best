@@ -1,4 +1,0 @@
-numpy
-scipy
-matplotlib>=3.0.0
-sphinx==2.2.0

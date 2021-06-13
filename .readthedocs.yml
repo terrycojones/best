@@ -12,6 +12,6 @@ sphinx:
 python:
   version: 3.5
   install:
-    - requirements: requirements_rtd.txt
+    - requirements: requirements.txt
     - method: setuptools
       path: .

@@ -58,7 +58,8 @@ $ pip install best
 
 ### Tests ###
 
-Running the tests requires [pytest](https://docs.pytest.org/en/latest/index.html): 
+Running the tests requires [pytest](https://docs.pytest.org/en/latest/index.html) (`pip install pytest`),
+and then can be run with:
 
 ```bash
 $ pytest tests
