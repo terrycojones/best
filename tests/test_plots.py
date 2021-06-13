@@ -6,6 +6,7 @@ import pytest
 
 import best
 
+
 @pytest.fixture
 def data_dir():
     dir_path = os.path.join('tests', 'data')

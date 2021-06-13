@@ -67,7 +67,7 @@ class BestModel(ABC):
         """
 
         kwargs['tune'] = kwargs.get('tune', 1000)
-        if tuple(map(int, pm.__version__.split('.'))) < (3,7):
+        if tuple(map(int, pm.__version__.split('.'))) < (3, 7):
             kwargs.setdefault('nuts_kwargs', {'target_accept': 0.90})
         else:
             kwargs.setdefault('target_accept', 0.9)
@@ -198,8 +198,9 @@ class BestModelTwo(BestModel):
 
             diff_of_means = pm.Deterministic('Difference of means', group1_mean - group2_mean)
             _ = pm.Deterministic('Difference of SDs', group1_sd - group2_sd)
-            _ = pm.Deterministic('Effect size',
-                    diff_of_means / np.sqrt((group1_sd ** 2 + group2_sd ** 2) / 2))
+            _ = pm.Deterministic(
+                'Effect size', diff_of_means / np.sqrt((group1_sd ** 2 + group2_sd ** 2) / 2)
+            )
 
     @property
     def version(self):

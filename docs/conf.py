@@ -201,4 +201,3 @@ napoleon_google_docstring = False
 
 # Enable NumPy-style docstrings
 napoleon_numpy_docstring = True
-

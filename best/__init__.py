@@ -1,3 +1,5 @@
+# flake8: noqa: F401
+
 from .model import (analyze_one,
                     analyze_two,
                     BestModel,

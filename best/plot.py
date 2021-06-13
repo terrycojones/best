@@ -163,7 +163,7 @@ def plot_normality_posterior(best_results, ax, bins, title):
     #  Then we could also center the "95% HPD" text on the log scale.
 
     var_name = 'Normality'
-    samples = best_results.trace[var_name]
+    _samples = best_results.trace[var_name]
     norm_bins = np.logspace(np.log10(best_results.model.nu_min),
                             np.log10(best_results.hdi(var_name, DISPLAYED_MASS)[-1]),
                             num=bins + 1)
@@ -435,8 +435,7 @@ def plot_all_two(best_results: BestResultsTwo,
                    bins=bins,
                    title='Effect size',
                    ref_val=0,
-                   label=r'$(\mu_1 - \mu_2) /'
-                          r' \sqrt{(\mathrm{sd}_1^2 + \mathrm{sd}_2^2)/2}$')
+                   label=r'$(\mu_1 - \mu_2) / \sqrt{(\mathrm{sd}_1^2 + \mathrm{sd}_2^2)/2}$')
 
     group1_data = best_results.observed_data(1)
     group2_data = best_results.observed_data(2)
