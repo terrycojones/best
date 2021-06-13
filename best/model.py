@@ -15,6 +15,7 @@ Kruschke, J. (2012) Bayesian estimation supersedes the t
 from abc import ABC, abstractmethod
 import sys
 
+import arviz
 import numpy as np
 import pymc3 as pm
 from pymc3.backends.base import MultiTrace
@@ -66,7 +67,10 @@ class BestModel(ABC):
         """
 
         kwargs['tune'] = kwargs.get('tune', 1000)
-        kwargs['nuts_kwargs'] = kwargs.get('nuts_kwargs', {'target_accept': 0.90})
+        if tuple(map(int, pm.__version__.split('.'))) < (3,7):
+            kwargs.setdefault('nuts_kwargs', {'target_accept': 0.90})
+        else:
+            kwargs.setdefault('target_accept', 0.9)
         max_rounds = 2
         for r in range(max_rounds):
             with self.model:
@@ -289,7 +293,7 @@ class BestResults(ABC):
         """
         check_credible_mass(credible_mass)
 
-        return tuple(pm.hpd(self.trace[var_name], alpha=(1 - credible_mass)))
+        return tuple(arviz.hdi(self.trace[var_name], hdi_prob=credible_mass))
 
     def posterior_prob(self, var_name: str, low: float = -np.inf, high: float = np.inf):
         r"""Calculate the posterior probability that a variable is in a given interval

@@ -24,3 +24,5 @@ Changes from version 1.0:
 -----
 
  - Fix: Automatically install requirements
+ - Fix: Allow PyMC3 versions beyond 3.10.
+
