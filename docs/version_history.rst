@@ -20,7 +20,7 @@ Changes from version 1.0:
  - Introduction of object-oriented API.
  - Changes in plot appearance.
 
-2.0.1
+2.0.2
 -----
 
  - Fix: Automatically install requirements

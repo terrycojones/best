@@ -6,15 +6,14 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='best',
-    version='2.0.1',
+    version='2.0.2',
     description='Bayesian estimation supersedes the t-test',
     author='Andrew Straw and Laszlo Treszkai',
     author_email='laszlo.treszkai@gmail.com',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/treszkai/best',
-    package_dir={'': 'best'},
-    packages=find_packages(where='src'),
+    packages=find_packages(),
     classifiers=[
             'Programming Language :: Python :: 3',
             'License :: OSI Approved :: MIT License',
