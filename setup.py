@@ -22,6 +22,7 @@ setup(
     license='MIT',
     python_requires='>=3.5',
     install_requires=[
+        'arviz>=0.2.0',
         'numpy',
         'scipy',
         'matplotlib>=3.0.0',

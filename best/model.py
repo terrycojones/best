@@ -67,7 +67,8 @@ class BestModel(ABC):
         """
 
         kwargs['tune'] = kwargs.get('tune', 1000)
-        if tuple(map(int, pm.__version__.split('.'))) < (3, 7):
+        pm_major, pm_minor, *_ = pm.__version__.split('.')
+        if (int(pm_major), int(pm_minor)) < (3, 7):
             kwargs.setdefault('nuts_kwargs', {'target_accept': 0.90})
         else:
             kwargs.setdefault('target_accept', 0.9)
@@ -182,8 +183,12 @@ class BestModelTwo(BestModel):
             nu = pm.Exponential('nu - %g' % nu_min, 1 / (nu_mean - nu_min)) + nu_min
             _ = pm.Deterministic('Normality', nu)
 
-            group1_logsigma = pm.Uniform('Group 1 log sigma', lower=np.log(sigma_low), upper=np.log(sigma_high))
-            group2_logsigma = pm.Uniform('Group 2 log sigma', lower=np.log(sigma_low), upper=np.log(sigma_high))
+            group1_logsigma = pm.Uniform(
+                'Group 1 log sigma', lower=np.log(sigma_low), upper=np.log(sigma_high)
+            )
+            group2_logsigma = pm.Uniform(
+                'Group 2 log sigma', lower=np.log(sigma_low), upper=np.log(sigma_high)
+            )
             group1_sigma = pm.Deterministic('Group 1 sigma', np.exp(group1_logsigma))
             group2_sigma = pm.Deterministic('Group 2 sigma', np.exp(group2_logsigma))
 
@@ -294,7 +299,11 @@ class BestResults(ABC):
         """
         check_credible_mass(credible_mass)
 
-        return tuple(arviz.hdi(self.trace[var_name], hdi_prob=credible_mass))
+        az_major, az_minor, *_ = arviz.__version__.split('.')
+        if (int(az_major), int(az_minor)) >= (0, 8):
+            return tuple(arviz.hdi(self.trace[var_name], hdi_prob=credible_mass))
+        else:
+            return tuple(arviz.hpd(self.trace[var_name], credible_interval=credible_mass))
 
     def posterior_prob(self, var_name: str, low: float = -np.inf, high: float = np.inf):
         r"""Calculate the posterior probability that a variable is in a given interval
