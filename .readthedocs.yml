@@ -7,11 +7,15 @@ version: 2
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
   configuration: docs/conf.py
+  fail_on_warning: true
 
-# Optionally set the version of Python and requirements required to build your docs
+build:
+  os: "ubuntu-20.04"
+  tools:
+    python: "3.8"
+
 python:
-  version: 3.5
   install:
     - requirements: requirements.txt
-    - method: setuptools
+    - method: pip
       path: .
