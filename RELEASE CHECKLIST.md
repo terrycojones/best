@@ -1,7 +1,7 @@
 # Release checklist
 
 - GitHub issues attended to
-- version number upgraded
+- version number upgraded (in `setup.py`)
 - changelist updated
 - locally built docs aren't obviously broken (`cd docs && make html` and check API page)
 - pushed to GitHub

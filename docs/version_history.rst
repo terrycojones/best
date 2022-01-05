@@ -26,7 +26,7 @@ Changes from version 1.0:
  - Fix: Automatically install requirements
  - Fix: Allow PyMC3 versions beyond 3.10.
 
-(Upcoming)
-----------
+2.0.3
+-----
 
  - Required Python version is min. 3.7, as [3.6 is not officially supported anymore](https://devguide.python.org/#status-of-python-branches) and dependencies fail to be installed on 3.5.
