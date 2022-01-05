@@ -23,7 +23,7 @@ setup(
     python_requires='>=3.7',
     install_requires=[
         'arviz>=0.2.0',
-        'numpy',
+        'numpy<1.22.0',  # Constraining version until https://github.com/pymc-devs/pymc/issues/5310 is fixed
         'scipy',
         'matplotlib>=3.0.0',
         'pymc3<4.0',
