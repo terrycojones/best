@@ -1,4 +1,4 @@
-https://packaging.python.org/tutorials/packaging-projects/
+# https://packaging.python.org/tutorials/packaging-projects/
 
 rm best/*.egg_info
 rm dist/*
@@ -8,6 +8,8 @@ python3 -m build
 # a .whl and a .tar.gz in the /dist directory
 python3 -m pip install --upgrade twine
 python3 -m twine upload --repository testpypi dist/*
-#python3 -m twine upload dist/*
+# if live:
+# python3 -m twine upload dist/*
 pip install --index-url https://test.pypi.org/simple/ --no-deps best
-#pip install best
+# if live:
+# pip install best
