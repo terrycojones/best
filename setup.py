@@ -20,7 +20,7 @@ setup(
             'Operating System :: OS Independent',
     ],
     license='MIT',
-    python_requires='>=3.5',
+    python_requires='>=3.7',
     install_requires=[
         'arviz>=0.2.0',
         'numpy',

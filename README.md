@@ -16,7 +16,7 @@ See the documentation for more information, at [best.readthedocs.io](https://bes
 
 ## Requirements ##
 
- - Python ≧ 3.5.4
+ - Python ≧ 3.7
  - SciPy
  - [Matplotlib](http://matplotlib.org) (≧ 3.0.0) for plotting
  - [PyMC3](https://github.com/pymc-devs/pymc)
@@ -42,14 +42,14 @@ The [documentation](https://best.readthedocs.io) describes the API in detail.
 
 ## Installation ##
 
-Ensure your Python version is sufficiently up-to-date (at least 3.5.4):
+Ensure your Python version is sufficiently up-to-date (at least 3.7):
 
 ```bash
 $ python --version
-Python 3.5.6
+Python 3.7.12
 ```
 
-Then install with Pip:
+Then install this package and its dependencies with PIP:
 ```bash
 $ pip install best
 ```
