@@ -38,7 +38,7 @@ def plot_posterior(best_results: BestResults,
                    title: Optional[str] = None,
                    label: Optional[str] = None,
                    ref_val: Optional[float] = None,
-                   **kwargs):
+                   **kwargs) -> plt.Axes:
     """Plot a histogram of posterior samples of a variable
 
     Parameters
@@ -92,10 +92,10 @@ def plot_posterior(best_results: BestResults,
     samples_min, samples_max = best_results.hdi(var_name, DISPLAYED_MASS)
     samples = samples[(samples_min <= samples) * (samples <= samples_max)]
 
-    trans = blended_transform_factory(ax.transData, ax.transAxes)
-
     if ax is None:
         _, ax = plt.subplots()
+
+    trans = blended_transform_factory(ax.transData, ax.transAxes)
 
     hist_kwargs = {'bins': bins}
     hist_kwargs.update(kwargs)
@@ -163,7 +163,6 @@ def plot_normality_posterior(best_results, ax, bins, title):
     #  Then we could also center the "95% HPD" text on the log scale.
 
     var_name = 'Normality'
-    _samples = best_results.trace[var_name]
     norm_bins = np.logspace(np.log10(best_results.model.nu_min),
                             np.log10(best_results.hdi(var_name, DISPLAYED_MASS)[-1]),
                             num=bins + 1)
@@ -187,7 +186,7 @@ def plot_data_and_prediction(best_results: BestResults,
                              bins: Union[int, list, np.ndarray] = 30,
                              title: Optional[str] = None,
                              hist_kwargs: dict = {},
-                             prediction_kwargs: dict = {}):
+                             prediction_kwargs: dict = {}) -> plt.Axes:
     """Plot samples of predictive distributions and a histogram of the data.
 
     This plot can be used as a *posterior predictive check*, to examine
