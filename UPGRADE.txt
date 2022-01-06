@@ -1,6 +1,6 @@
 # https://packaging.python.org/tutorials/packaging-projects/
 
-rm -r best.egg-info dist/*
+rm -r best.egg-info dist/* build
 
 pip install --upgrade build
 python3 -m build
@@ -10,7 +10,7 @@ python3 -m twine upload --repository testpypi dist/*
 # if live:
 # python3 -m twine upload dist/*
 
-mktempenv
+mktmpenv
 cd - && pip install . && cd -  # install dependencies
 pip uninstall best
 pip install --index-url https://test.pypi.org/simple/ --no-deps best

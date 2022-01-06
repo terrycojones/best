@@ -62,7 +62,7 @@ Running the tests requires [pytest](https://docs.pytest.org/en/latest/index.html
 and then can be run with:
 
 ```bash
-$ pytest tests
+$ python -m pytest tests
 ```
 
 The plotting tests only ensure that the `plot_all` function does not throw errors,
