@@ -6,7 +6,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='best',
-    version='2.0.3',
+    version='2.0.4',
     description='Bayesian estimation supersedes the t-test',
     author='Andrew Straw and Laszlo Treszkai',
     author_email='laszlo.treszkai@gmail.com',
@@ -23,7 +23,7 @@ setup(
     python_requires='>=3.7',
     install_requires=[
         'arviz>=0.2.0',
-        'numpy<1.22.0',  # Constraining version until https://github.com/pymc-devs/pymc/issues/5310 is fixed
+        'numpy',
         'scipy',
         'matplotlib>=3.0.0',
         'pymc3<4.0',
