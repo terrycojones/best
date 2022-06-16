@@ -1,5 +1,5 @@
-Explanations of the Outputs
-===========================
+Explanation of the Outputs
+==========================
 
 .. module:: best
    :noindex:

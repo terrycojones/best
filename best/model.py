@@ -22,11 +22,6 @@ from pymc3.backends.base import MultiTrace
 import scipy.stats as st
 
 
-def check_credible_mass(credible_mass):
-    if not 0 < credible_mass < 1:
-        raise ValueError('credible_mass parameter must be between 0 and 1, non-inclusive')
-
-
 class BestModel(ABC):
     """Base class for BEST models"""
 
@@ -274,8 +269,7 @@ class BestResults(ABC):
             For example, credible_mass=0.95 results in 95% credible intervals.
             Default: 0.95.
         """
-        check_credible_mass(credible_mass)
-        return pm.summary(self.trace, alpha=(1 - credible_mass))
+        return arviz.summary(self.trace, hdi_prob=credible_mass)
 
     def hdi(self, var_name: str, credible_mass: float = 0.95):
         """Calculate the highest posterior density interval (HDI)
@@ -297,8 +291,6 @@ class BestResults(ABC):
         (float, float)
             The endpoints of the HPD
         """
-        check_credible_mass(credible_mass)
-
         az_major, az_minor, *_ = arviz.__version__.split('.')
         if (int(az_major), int(az_minor)) >= (0, 8):
             return tuple(arviz.hdi(self.trace[var_name], hdi_prob=credible_mass))

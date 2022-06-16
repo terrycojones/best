@@ -32,3 +32,8 @@ Changes from version 1.0:
  - Required Python version is min. 3.7, as `3.6 is not officially supported anymore <https://devguide.python.org/#status-of-python-branches>`_ and dependencies fail to be installed on 3.5.
  - Fix an error in :func:`plot_posterior` when ``ax`` argument is ``None``.
  - Fix import-time error when NumPy >=1.22.0 installed.
+
+2.0.5
+-----
+
+ - Fixed issue with "TypeError: summary() got an unexpected keyword argument 'alpha'" (`issue #6 <https://github.com/treszkai/best/issues/6>`_)

@@ -31,7 +31,7 @@ def test_hdi_ok(mock_trace):
     assert br.hdi(DUMMY_VAR_NAME, 0.95) == pytest.approx((-1.96, 1.96), abs=0.1)
 
 
-@pytest.mark.parametrize("credible_mass", [0, 1, -10, 10])
+@pytest.mark.parametrize("credible_mass", [0, 1.01])
 def test_valueerror(mock_trace, credible_mass):
     br, _ = mock_trace
     with pytest.raises(ValueError):
