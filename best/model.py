@@ -106,10 +106,6 @@ class BestModelOne(BestModel):
         self._nu_param = nu_mean - nu_min
 
         with pm.Model() as self._model:
-            # Note: the IDE might give a warning for these because it thinks
-            #  distributions like pm.Normal() don't have a string "name" argument,
-            #  but this is false – pm.Distribution redefined __new__, so the
-            #  first argument indeed is the name (a string).
             mean = pm.Normal('Mean', mu=mu_loc, sd=mu_scale)
             logsigma = pm.Uniform('Log sigma', lower=np.log(sigma_low), upper=np.log(sigma_high))
             sigma = pm.Deterministic('Sigma', np.exp(logsigma))
