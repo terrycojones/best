@@ -6,7 +6,7 @@
 - locally built docs aren't obviously broken (`cd docs && make html` and check API page)
 - pushed to GitHub
 - docs are (automatically) updated on best.readthedocs.io
-- delete old build files
+- delete old build files (see UPGRADE.txt)
 - build new package
 - release new package
 - new package available on PyPI

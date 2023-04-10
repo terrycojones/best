@@ -1,19 +1,19 @@
 # https://packaging.python.org/tutorials/packaging-projects/
 
-rm -r best.egg-info dist/* build
+rm -rf best.egg-info dist/* build
 
-pip install --upgrade build
+python3 -m pip install --upgrade build twine
 python3 -m build
 # a .whl and a .tar.gz in the /dist directory
-python3 -m pip install --upgrade twine
 python3 -m twine upload --repository testpypi dist/*
 # if live:
-# python3 -m twine upload dist/*
 
 mktmpenv
-cd - && pip install . && cd -  # install dependencies
+#cd - && pip install . && cd -  # install dependencies
+# TODO install dependencies using install_requirements from setup.py, because pip install . doesn't respect the dependencies of the dependencies
 pip uninstall best
 pip install --index-url https://test.pypi.org/simple/ --no-deps best
 
-# if live:
-# pip install best
+# do it live:
+python3 -m twine upload dist/*
+pip install best
