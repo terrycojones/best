@@ -185,8 +185,8 @@ def plot_data_and_prediction(best_results: BestResults,
                              ax: plt.Axes = None,
                              bins: Union[int, list, np.ndarray] = 30,
                              title: Optional[str] = None,
-                             hist_kwargs: dict = {},
-                             prediction_kwargs: dict = {}) -> plt.Axes:
+                             hist_kwargs: Optional[dict] = None,
+                             prediction_kwargs: Optional[dict] = None) -> plt.Axes:
     """Plot samples of predictive distributions and a histogram of the data.
 
     This plot can be used as a *posterior predictive check*, to examine
@@ -245,6 +245,9 @@ def plot_data_and_prediction(best_results: BestResults,
     If the plot is large enough, it is suggested to put a legend on it, by
     calling ``ax.legend()`` afterwards.
     """
+
+    hist_kwargs = hist_kwargs or {}
+    prediction_kwargs = prediction_kwargs or {}
 
     if ax is None:
         _, ax = plt.subplots()
